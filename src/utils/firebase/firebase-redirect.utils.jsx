@@ -3,9 +3,9 @@ import { initializeApp } from "firebase/app";
 //Auth Imports
 import {
   getAuth,
+  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
 } from "firebase/auth";
 //Firestore(DB) Imports
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -35,15 +35,13 @@ googleProvider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 //Firestore(DB) - get the DataBase
 export const db = getFirestore();
 //Firestore(DB) - Function to create the document of a new user in the database from the auth information
-export const createUserDocumentFromAuth = async (
-  userAuth,
-  additionalInformation = {}
-) => {
-  if (!userAuth) return;
+export const createUserDocumentFromAuth = async (userAuth) => {
   //Creates a reference to the document
   const userDocRef = doc(db, "users", userAuth.uid);
   //Gets the info from the document referenced before
@@ -60,16 +58,10 @@ export const createUserDocumentFromAuth = async (
         displayName,
         email,
         createdAt,
-        ...additionalInformation,
       });
     } catch (error) {
       console.log("error creating the user: " + error.message);
     }
   }
   return userDocRef;
-};
-
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
-  return await createUserWithEmailAndPassword(auth, email, password);
 };

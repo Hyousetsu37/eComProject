@@ -2,7 +2,7 @@ import "./App.css";
 import { Navigation } from "./components/Navigation/Navigation";
 import Home from "./components/routes/home/home.componen";
 import { Routes, Route } from "react-router-dom";
-import SignIn from "./components/routes/signin/signin.component";
+import SignIn from "./components/routes/signin/signin-popup.component";
 
 const Shop = () => {
   return <h1>Shop</h1>;
