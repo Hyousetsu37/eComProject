@@ -1,7 +1,7 @@
-import { Directory } from "../../Directory/Directory";
+import { Directory } from "../../components/Directory/Directory";
 import { Outlet } from "react-router-dom";
 
-function Home() {
+export default function HomePage() {
   const categories = [
     {
       id: 1,
@@ -36,5 +36,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

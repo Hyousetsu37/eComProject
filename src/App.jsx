@@ -1,10 +1,10 @@
 import "./App.css";
 import { Navigation } from "./components/Navigation/Navigation";
-import Home from "./components/routes/home/home.componen";
+import HomePage from "./routes/home/home.page";
 import { Routes, Route } from "react-router-dom";
-import SignIn from "./components/routes/signin/signin-popup.component";
+import SignInPage from "./routes/authentication/authentication.page";
 
-const Shop = () => {
+const ShopPage = () => {
   return <h1>Shop</h1>;
 };
 
@@ -12,9 +12,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />;
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route index element={<HomePage />} />;
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/signin" element={<SignInPage />} />
       </Route>
     </Routes>
   );

@@ -5,7 +5,7 @@ import {
   auth,
   createUserDocumentFromAuth,
   signInWithGoogleRedirect,
-} from "../../../utils/firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils";
 
 export default function SignIn() {
   useEffect(() => {
