@@ -18,23 +18,21 @@ export function SignInForm() {
   const { email, password } = formFields;
 
   const logGooglePopupUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(email, password);
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
       resetFields();
     } catch (error) {
       switch (error.code) {
-        case "auth/wrong-incorrect-password":
+        case "auth/wrong-password":
           alert("Incorrect email or password");
           break;
         case "auth/user-not-found":
