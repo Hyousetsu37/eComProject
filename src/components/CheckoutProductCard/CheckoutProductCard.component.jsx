@@ -1,7 +1,16 @@
 /* eslint-disable react/prop-types */
-import "./CheckoutProductCard.styles.scss";
 import { CartContext } from "../../context/cart.context";
 import { useContext } from "react";
+
+import {
+  CheckOutItemContainer,
+  ImageContainer,
+  BaseTag,
+  Quantity,
+  Arrow,
+  Value,
+  RemoveButton,
+} from "./CheckoutProductCard.styles";
 
 export default function CheckoutProductCard({ cartItem }) {
   const { name, quantity, price, imageUrl } = cartItem;
@@ -19,26 +28,20 @@ export default function CheckoutProductCard({ cartItem }) {
   }
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckOutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt="" />
-      </div>
-      <span className="name">{name}</span>
+      </ImageContainer>
+      <BaseTag>{name}</BaseTag>
 
-      <span className="quantity">
-        <div className="arrow" onClick={decreaseQuantity}>
-          &#10094;
-        </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={increaseQuantity}>
-          &#10095;
-        </div>
-      </span>
+      <Quantity>
+        <Arrow onClick={decreaseQuantity}>&#10094;</Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={increaseQuantity}>&#10095;</Arrow>
+      </Quantity>
 
-      <span className="price">{price}</span>
-      <div className="remove-button" onClick={removeProduct}>
-        &#10005;
-      </div>
-    </div>
+      <BaseTag>{price}</BaseTag>
+      <RemoveButton onClick={removeProduct}>&#10005;</RemoveButton>
+    </CheckOutItemContainer>
   );
 }

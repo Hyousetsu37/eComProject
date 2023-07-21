@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import "./SignUpForm.styles.scss";
 import {
   createUserDocumentFromAuth,
   createAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import { FormInput } from "../FormInput/FormInput.component";
 import { Button } from "../Button/Button.component";
+
+import { SignUpContainer, TitleContainer } from "./SignUpForm.styles.jsx";
 
 const defaultFormFields = {
   displayName: "",
@@ -51,8 +52,8 @@ export function SignUpForm() {
     setFormFields({ ...formFields, [name]: value });
   }
   return (
-    <div className="sign-up-container">
-      <h2>Don't have an account?</h2>
+    <SignUpContainer>
+      <TitleContainer>Don't have an account?</TitleContainer>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -92,6 +93,6 @@ export function SignUpForm() {
         />
         <Button type="submit"> Sign Up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 }

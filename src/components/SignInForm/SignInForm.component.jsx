@@ -1,11 +1,12 @@
 import { useState } from "react";
-import "./SignInForm.styles.scss";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import { FormInput } from "../FormInput/FormInput.component";
-import { Button } from "../Button/Button.component";
+import { Button, BUTTON_TYPE_CLASSES } from "../Button/Button.component";
+
+import { ButtonContainer } from "./SignInForm.styles.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -73,16 +74,16 @@ export function SignInForm() {
           onChange={handleChange}
           value={password}
         />
-        <div className="b-c">
+        <ButtonContainer>
           <Button type="submit">Sign In</Button>
           <Button
             type="button"
-            buttonType="google"
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={logGooglePopupUser}
           >
             Google Sign in
           </Button>
-        </div>
+        </ButtonContainer>
       </form>
     </div>
   );

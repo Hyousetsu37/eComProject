@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import { CategoryItem } from "../CategoryItem/CategoryItem";
-import "./Directory.styles.scss";
+import { DirectoryItem } from "../DirectoryItem/Directorytem";
+import { DirectoryContainer } from "./Directory.styles.jsx";
 
 export function Directory({ categories }) {
   return (
-    <div className="directory-container">
+    <DirectoryContainer>
       {categories.map((category) => (
-        <CategoryItem category={category} key={category.id} />
+        <DirectoryItem category={category} key={category.id} />
       ))}
-    </div>
+    </DirectoryContainer>
   );
 }
