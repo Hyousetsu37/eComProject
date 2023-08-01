@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
-import { CartContext } from "../../context/cart.context";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  removeItemFromCart,
+  decreaseItemFromCart,
+  addItemToCart,
+} from "../../store/cart/cart.action";
+
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 import {
   CheckOutItemContainer,
@@ -13,18 +20,18 @@ import {
 } from "./CheckoutProductCard.styles";
 
 export default function CheckoutProductCard({ cartItem }) {
+  const cartItems = useSelector(selectCartItems);
   const { name, quantity, price, imageUrl } = cartItem;
-  const { removeItemFromCart, decreaseItemFromCart, addItemToCart } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
 
   function increaseQuantity() {
-    addItemToCart(cartItem);
+    dispatch(addItemToCart(cartItems, cartItem));
   }
   function decreaseQuantity() {
-    decreaseItemFromCart(cartItem);
+    dispatch(decreaseItemFromCart(cartItems, cartItem));
   }
   function removeProduct() {
-    removeItemFromCart(cartItem);
+    dispatch(removeItemFromCart(cartItems, cartItem));
   }
 
   return (

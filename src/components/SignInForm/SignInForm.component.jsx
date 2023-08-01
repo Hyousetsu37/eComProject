@@ -23,7 +23,6 @@ export function SignInForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(email, password);
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
       resetFields();
@@ -46,7 +45,6 @@ export function SignInForm() {
   function handleChange(event) {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-    console.log(formFields);
   }
 
   function resetFields() {

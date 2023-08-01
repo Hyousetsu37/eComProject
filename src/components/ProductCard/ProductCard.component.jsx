@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { CartContext } from "../../context/cart.context";
 import { Button, BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import {
   ProductCardContainer,
@@ -9,11 +7,16 @@ import {
   Price,
 } from "./ProductCard.styles.jsx";
 
+import { addItemToCart } from "../../store/cart/cart.action";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selector";
+
 export default function ProductCard({ product }) {
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   function addProductToCart() {
-    addItemToCart(product);
+    dispatch(addItemToCart(cartItems, product));
   }
   return (
     <ProductCardContainer>

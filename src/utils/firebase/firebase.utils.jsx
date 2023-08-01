@@ -67,18 +67,12 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
-export const getCategoriesAnddDocuments = async () => {
+export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 //Firestore(DB) - Function to create the document of a new user in the database from the auth information
