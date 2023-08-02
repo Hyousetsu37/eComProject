@@ -3,12 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CategoriesPreviewPage from "../categoriesPreview/categoriesPreview.page";
 import Category from "../category/category.page";
-import { fetchCategoriesAsync } from "../../store/categories/category.action";
+import { fetchCategoriesStart } from "../../store/categories/category.action";
 
 export default function ShopPage() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCategoriesAsync());
+    dispatch(fetchCategoriesStart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

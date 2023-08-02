@@ -5,23 +5,13 @@ import SignInPage from "./routes/authentication/authentication.page";
 import ShopPage from "./routes/shop/shop.page";
 import CheckoutPage from "./routes/checkout/checkout.page";
 import { useEffect } from "react";
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
+import { checkUserSession } from "./store/user/user.action";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
-    return unsubscribe;
+    dispatch(checkUserSession());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
