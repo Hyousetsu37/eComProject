@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setIsCartOpen } from "../../store/cart/cart.action.js";
+import { setIsCartOpen } from "../../store/cart/cart.slice.js";
 import { selectCartItems } from "../../store/cart/cart.selector.js";
 
 export default function CartDropDown() {

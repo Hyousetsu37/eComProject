@@ -1,5 +1,6 @@
 import {
   BaseButton,
+  ButtonSpinner,
   GoogleSignInButton,
   InvertedButton,
 } from "./Button.styles";
@@ -19,7 +20,11 @@ function getButton(buttonType = BUTTON_TYPE_CLASSES.base) {
 }
 
 // eslint-disable-next-line react/prop-types
-export function Button({ children, buttonType, ...otherProps }) {
+export function Button({ children, buttonType, isLoading, ...otherProps }) {
   const CustomButton = getButton(buttonType);
-  return <CustomButton {...otherProps}>{children}</CustomButton>;
+  return (
+    <CustomButton disabled={isLoading} {...otherProps}>
+      {isLoading ? <ButtonSpinner /> : children}
+    </CustomButton>
+  );
 }

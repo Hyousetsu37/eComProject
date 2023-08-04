@@ -16,7 +16,7 @@ export function DirectoryItem({ category }) {
   }
   return (
     <DirectoryItemContainer onClick={onNavigateHandler}>
-      <BackgroundImage imageUrl={imageUrl}></BackgroundImage>
+      <BackgroundImage imageurl={imageUrl} />
       <DirectoryItemBody>
         <h2>{title}</h2>
         <p>Shop Now</p>
